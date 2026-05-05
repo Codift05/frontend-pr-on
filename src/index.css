@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme ===== */
+@theme {
+  --color-noir-black: #000000;
+  --color-noir-dark: #0f0f0f;
+  --color-noir-gray: #1a1a1a;
+  --color-noir-mid: #888888;
+  --color-neon-lime: #ccff00;
+  --color-neon-cyan: #00e5ff;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-pink: #ff6ec7;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ===== Base Resets ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Scrollbar Hide ===== */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Grid Background Pattern ===== */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* ===== Glassmorphism Card ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.glass-card-neon {
+  background: rgba(204, 255, 0, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(204, 255, 0, 0.15);
+  border-radius: 16px;
+}
+
+/* ===== Neon Glow Effects ===== */
+.glow-lime {
+  box-shadow: 0 0 20px rgba(204, 255, 0, 0.15),
+              0 0 60px rgba(204, 255, 0, 0.05);
+}
+
+.glow-lime-strong {
+  box-shadow: 0 0 30px rgba(204, 255, 0, 0.3),
+              0 0 80px rgba(204, 255, 0, 0.1);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15),
+              0 0 60px rgba(0, 229, 255, 0.05);
+}
+
+.text-glow-lime {
+  text-shadow: 0 0 40px rgba(204, 255, 0, 0.3),
+               0 0 80px rgba(204, 255, 0, 0.1);
+}
+
+.text-glow-white {
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.15),
+               0 0 80px rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Terminal Window Style ===== */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red { background: #ff5f57; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #28c840; }
+
+/* ===== Noise Texture ===== */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== Dashed Connector Lines ===== */
+.connector-line {
+  stroke-dasharray: 8, 6;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ===== Animated Scanline ===== */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.1), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+/* ===== Pulse Animation ===== */
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 3s ease-in-out infinite;
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
