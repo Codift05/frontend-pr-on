@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
+import SplashSlide from './slides/SplashSlide';
 import CoverSlide from './slides/CoverSlide';
 import TeamSlide from './slides/TeamSlide';
 import VisiMisiSlide from './slides/VisiMisiSlide';
@@ -13,10 +14,11 @@ import WorkflowSlide from './slides/WorkflowSlide';
 import ResourcesSlide from './slides/ResourcesSlide';
 import QASlide from './slides/QASlide';
 
-import SlideIndicator from './components/SlideIndicator';
 import NavigationArrows from './components/NavigationArrows';
+import CustomCursor from './components/CustomCursor';
 
 const slides = [
+  SplashSlide,      // 0. Intro / Splash
   CoverSlide,       // 1. Cover
   TeamSlide,        // 2. Get to Know Us
   VisiMisiSlide,    // 3. Visi & Misi
@@ -99,7 +101,8 @@ export default function App() {
   const CurrentSlideComponent = slides[currentSlide];
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-noir-black">
+    <div className="relative w-screen h-screen overflow-hidden bg-noir-black cursor-none">
+      <CustomCursor />
       {/* Slide Content */}
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
@@ -116,7 +119,6 @@ export default function App() {
       </AnimatePresence>
 
       {/* Navigation UI */}
-      <SlideIndicator current={currentSlide} total={slides.length} />
       <NavigationArrows
         onPrev={goPrev}
         onNext={goNext}

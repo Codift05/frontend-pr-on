@@ -1,163 +1,141 @@
 import { motion } from 'framer-motion';
 import gojoImg from '../assets/Gojo2.png';
-import unsratImg from '../assets/unsrat.png';
 
-const fade = (delay = 0) => ({
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay } },
-});
-
-const fadeOnly = (delay = 0) => ({
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6, delay } },
-});
+const floatAnim = {
+  y: ["-10px", "10px"],
+  transition: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+};
 
 export default function CoverSlide() {
   return (
-    <div className="relative w-full h-full overflow-hidden select-none"
-      style={{ background: 'linear-gradient(120deg, #0f1c30 0%, #1a2d4a 30%, #3A6B9F 60%, #5B8EC2 85%, #7aadda 100%)' }}
-    >
-      {/* === BG LAYER: UNSRAT building (left half, fading right) === */}
-      <div className="absolute left-0 top-0 w-[60%] h-full z-[1]">
-        <motion.img
-          variants={fadeOnly(0.1)}
-          initial="hidden"
-          animate="visible"
-          src={unsratImg}
-          alt=""
-          className="w-full h-full object-cover opacity-35"
-        />
-        {/* Gradient overlay — smooth fade to right background */}
-        <div className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(90deg, rgba(15,28,48,0.3) 0%, rgba(26,45,74,0.6) 50%, rgba(58,107,159,1) 100%)',
-          }}
-        />
+    <div className="relative w-full h-full overflow-hidden bg-[#9EAFC2] font-sans text-[#111827] select-none">
+      
+      {/* === TECH GRID BACKGROUND === */}
+      <div className="absolute inset-0 z-[1] opacity-[0.07] pointer-events-none" 
+           style={{ backgroundImage: 'linear-gradient(rgba(17, 24, 39, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 24, 39, 1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
+      />
+
+      {/* === BACKGROUND LAYER: Organized Giant Text === */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[1] overflow-hidden">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full flex flex-col items-center justify-center -rotate-2"
+        >
+          {/* Top Line */}
+          <div className="font-black italic text-[20vw] leading-[0.8] tracking-tighter"
+            style={{ WebkitTextStroke: '2px rgba(17, 24, 39, 0.4)', color: 'transparent' }}>
+            FRONT-
+          </div>
+          {/* Bottom Line */}
+          <div className="font-black italic text-[20vw] leading-[0.8] tracking-tighter mt-[-2%]"
+               style={{ WebkitTextStroke: '2px rgba(17, 24, 39, 0.4)', color: 'transparent' }}>
+            END
+          </div>
+        </motion.div>
       </div>
 
-      {/* === BG LAYER: Grid pattern (full) === */}
-      <div className="absolute inset-0 z-[2] opacity-[0.04]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }}
-      />
+      {/* Floating Particles (Rocks & Tech Elements) */}
+      <div className="absolute inset-0 z-[2] pointer-events-none">
+        {/* Hollow yellow accent */}
+        <motion.div animate={floatAnim} className="absolute top-[18%] left-[8%] w-8 h-8 border-[3px] border-[#FBBF24] opacity-80 rotate-12 rounded-sm drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]" />
+        {/* Dark solid block */}
+        <motion.div animate={{ ...floatAnim, transition: { duration: 4, repeat: Infinity, repeatType: "reverse" } }} className="absolute bottom-[30%] left-[12%] w-14 h-4 bg-[#111827] opacity-60 -rotate-12 rounded-sm" />
+        {/* Hollow white box */}
+        <motion.div animate={{ ...floatAnim, transition: { duration: 3.5, repeat: Infinity, repeatType: "reverse" } }} className="absolute top-[28%] right-[10%] w-6 h-6 border-2 border-white/60 rotate-45 rounded-sm" />
+        {/* Solid glowing yellow particle */}
+        <motion.div animate={{ ...floatAnim, transition: { duration: 5, repeat: Infinity, repeatType: "reverse" } }} className="absolute bottom-[25%] right-[18%] w-6 h-6 bg-[#FBBF24] opacity-80 rotate-[60deg] rounded-sm drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]" />
 
-      {/* === BG LAYER: Diagonal stripes === */}
-      <div className="absolute w-[200%] h-[80px] -left-[50%] top-[22%] bg-white/[0.03] z-[3]"
-        style={{ transform: 'rotate(-5deg)' }}
-      />
-      <div className="absolute w-[200%] h-[50px] -left-[50%] bottom-[18%] bg-white/[0.025] z-[3]"
-        style={{ transform: 'rotate(-5deg)' }}
-      />
-      <div className="absolute w-[200%] h-[2px] -left-[50%] top-[48%] z-[3]"
-        style={{ transform: 'rotate(-5deg)', background: 'linear-gradient(90deg, transparent 10%, rgba(255,215,0,0.2) 40%, rgba(255,215,0,0.35) 50%, rgba(255,215,0,0.2) 60%, transparent 90%)' }}
-      />
-
-      {/* === BG LAYER: Giant outlined text (behind everything) === */}
-      <motion.div
-        variants={fadeOnly(0.15)}
-        initial="hidden"
-        animate="visible"
-        className="absolute top-[42%] left-[35%] -translate-y-1/2 z-[4] pointer-events-none"
-      >
-        <div className="font-display text-[20vw] leading-[0.85] tracking-[0.02em] whitespace-nowrap"
-          style={{ color: 'transparent', WebkitTextStroke: '1.5px rgba(255,255,255,0.06)' }}
-        >
-          FRONTEND
+        {/* HUD Decor Text */}
+        <div className="absolute top-[35%] left-[4%] text-[#111827]/30 font-mono text-xs font-bold tracking-[0.2em] -rotate-90 origin-left select-none">
+          // SYS_INIT: OK
         </div>
-      </motion.div>
+        <div className="absolute bottom-[35%] right-[4%] text-[#111827]/30 font-mono text-xs font-bold tracking-[0.2em] rotate-90 origin-right select-none">
+          0x99F4A :: SECTOR_7
+        </div>
+        
+        {/* Crosshair accents */}
+        <div className="absolute top-1/2 left-[15%] w-4 h-4 border-t-2 border-l-2 border-[#111827]/20" />
+        <div className="absolute bottom-1/3 right-[25%] w-4 h-4 border-b-2 border-r-2 border-white/30" />
+      </div>
 
-      {/* === CHARACTER: Gojo (left-center) === */}
+      {/* === FOREGROUND LAYER: Character === */}
       <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-        className="absolute bottom-0 left-[8%] md:left-[12%] z-[8] h-[80%] md:h-[90%] lg:h-[95%]"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        className="absolute bottom-[0%] md:bottom-[-55%] lg:bottom-[-65%] left-1/2 -translate-x-1/2 z-[25] h-[85%] md:h-[175%] lg:h-[185%] pointer-events-none flex items-end justify-center w-[150%] md:w-auto"
       >
         <img
           src={gojoImg}
-          alt="Gojo"
-          className="h-full w-auto object-contain"
-          style={{ filter: 'drop-shadow(0 0 50px rgba(15,28,48,0.6))' }}
+          alt="Gojo Satoru"
+          className="h-full w-auto object-contain object-bottom relative z-[25]"
         />
       </motion.div>
 
-      {/* === Scanline effect === */}
-      <div className="absolute inset-0 z-[9] pointer-events-none overflow-hidden">
-        <div className="scanline" />
-      </div>
-
-      {/* === RIGHT SIDE: Typography === */}
-      <div className="absolute right-0 top-0 w-[55%] md:w-[50%] h-full flex flex-col justify-center px-6 md:px-10 lg:px-16 z-[15]">
-
-        {/* Small label */}
-        <motion.div variants={fade(0.4)} initial="hidden" animate="visible" className="mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-[1.5px] bg-accent-yellow" />
-            <span className="font-condensed text-xs md:text-sm tracking-[0.25em] text-white/50 uppercase">Onboarding Division</span>
-          </div>
-        </motion.div>
-
-        {/* Main title */}
-        <motion.div variants={fade(0.5)} initial="hidden" animate="visible">
-          <h1 className="font-display text-[4.5rem] md:text-[6.5rem] lg:text-[8.5rem] leading-[0.9] tracking-[0.02em] text-white">
-            FRONT
-          </h1>
-          <h1 className="font-display text-[4.5rem] md:text-[6.5rem] lg:text-[8.5rem] leading-[0.9] tracking-[0.02em] text-accent-yellow">
-            END
-          </h1>
-        </motion.div>
-
-        {/* Sub line */}
-        <motion.div variants={fade(0.6)} initial="hidden" animate="visible" className="mt-2 mb-6">
-          <div className="flex items-center gap-3">
-            <span className="font-display text-xl md:text-2xl lg:text-3xl text-white/25 tracking-[0.1em]">
-              DEVELOPMENT
-            </span>
-            <div className="flex-1 h-[1px] bg-white/10 max-w-[100px]" />
-          </div>
-        </motion.div>
-
-        {/* Info block */}
-        <motion.div variants={fade(0.7)} initial="hidden" animate="visible">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent-yellow/60" />
-            <span className="font-condensed text-sm tracking-[0.15em] text-white/40 uppercase">
-              Codift — Frontend Division
-            </span>
-          </div>
-          <p className="font-condensed text-xs tracking-[0.15em] text-white/20 uppercase pl-[18px]">
-            Universitas Sam Ratulangi
-          </p>
-        </motion.div>
-
-        {/* Year badge */}
-        <motion.div variants={fade(0.8)} initial="hidden" animate="visible" className="mt-10">
-          <div className="flex items-end gap-3">
-            <div className="font-condensed text-[10px] tracking-[0.2em] text-white/30 uppercase mb-2">Season</div>
-            <div className="font-display text-5xl md:text-6xl lg:text-7xl text-white/15 leading-none">
-              20<span className="text-accent-yellow/30">26</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* === Corner brackets (cyberpunk) === */}
-      <div className="absolute top-4 left-4 w-6 h-6 border-l-[1.5px] border-t-[1.5px] border-white/15 z-20" />
-      <div className="absolute top-4 right-4 w-6 h-6 border-r-[1.5px] border-t-[1.5px] border-white/15 z-20" />
-      <div className="absolute bottom-4 left-4 w-6 h-6 border-l-[1.5px] border-b-[1.5px] border-white/15 z-20" />
-      <div className="absolute bottom-4 right-4 w-6 h-6 border-r-[1.5px] border-b-[1.5px] border-white/15 z-20" />
-
-      {/* Bottom code tag */}
+      {/* === TOP HEADER (FULL BLEED) === */}
+      {/* Black Header */}
       <motion.div
-        variants={fadeOnly(1.2)}
-        initial="hidden"
-        animate="visible"
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="absolute top-0 left-0 w-full h-auto min-h-[12%] md:min-h-[14%] bg-[#111827] z-[20] flex items-center p-4 md:px-12 border-b-[1px] border-[#FBBF24]/20"
       >
-        <span className="font-mono text-[10px] text-white/15 tracking-wider">{'<'}FrontendDev{' />'}</span>
+        <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
+          <div className="text-white font-black italic text-xl md:text-4xl lg:text-5xl tracking-tighter uppercase whitespace-normal md:whitespace-nowrap leading-tight md:leading-none">
+            FRONT-END <span className="text-[#FBBF24]">ONBOARDING PROTOCOL</span>
+          </div>
+
+          <div className="self-end md:self-auto flex flex-col items-end text-right mt-2 md:mt-0">
+            <span className="text-[#FBBF24] font-black italic text-sm md:text-2xl lg:text-3xl tracking-tighter uppercase leading-none">
+              STATUS: ONBOARDING
+            </span>
+            <span className="text-white font-black italic text-xs md:text-xl lg:text-2xl tracking-tighter uppercase mt-1 leading-none text-white/90">
+              BATCH 2026
+            </span>
+          </div>
+        </div>
       </motion.div>
+
+      {/* === BOTTOM FOOTER (FULL BLEED) === */}
+      {/* White Footer */}
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="absolute bottom-0 left-0 w-full h-auto min-h-[12%] md:min-h-[14%] bg-white z-[20] flex items-center p-4 md:px-12 border-t-[1px] border-[#111827]/10"
+      >
+        <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-1 md:gap-0">
+
+          {/* Left Side */}
+          <div className="flex flex-col max-w-[80%] md:max-w-[50%]">
+            <span className="text-[#FBBF24] font-black italic text-3xl md:text-5xl lg:text-6xl leading-none tracking-tighter whitespace-normal md:whitespace-nowrap">
+              UNITY FRONTEND
+            </span>
+            <span className="text-[#111827] font-black italic text-xl md:text-3xl lg:text-4xl leading-none tracking-tight mt-1 md:mt-2">
+              UNSRAT IT COMMUNITY
+            </span>
+          </div>
+
+          {/* Right Side */}
+          <div className="self-end md:self-auto flex flex-col items-end text-right mt-2 md:mt-0">
+            <span className="text-[#FBBF24] font-black italic text-xs md:text-xl tracking-widest uppercase">
+              FOKUS KITA:
+            </span>
+            <span className="text-[#111827] font-black italic text-xs md:text-base lg:text-xl tracking-widest uppercase mt-0 md:mt-1 max-w-[200px] md:max-w-[400px] leading-tight">
+              NGULIK FRONTEND & BIKIN WEB KEREN
+            </span>
+          </div>
+
+        </div>
+      </motion.div>
+
+      {/* Scanline overlay for aesthetic */}
+      <div className="absolute inset-0 z-[30] pointer-events-none overflow-hidden mix-blend-overlay opacity-30">
+        <div className="scanline" style={{ background: 'rgba(0,0,0,0.2)' }} />
+      </div>
+
     </div>
   );
 }
