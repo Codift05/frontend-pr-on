@@ -31,27 +31,27 @@ const slides = [
 ];
 
 const slideVariants = {
-  enter: (direction) => ({
+  enter: () => ({
     opacity: 0,
-    x: direction > 0 ? 120 : -120,
-    scale: 0.98,
+    scale: 1.04,
+    filter: 'blur(8px)',
   }),
   center: {
     opacity: 1,
-    x: 0,
     scale: 1,
+    filter: 'blur(0px)',
     transition: {
-      duration: 0.5,
-      ease: [0.25, 1, 0.5, 1],
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1],
     },
   },
-  exit: (direction) => ({
+  exit: () => ({
     opacity: 0,
-    x: direction > 0 ? -120 : 120,
-    scale: 0.98,
+    scale: 0.97,
+    filter: 'blur(6px)',
     transition: {
-      duration: 0.35,
-      ease: [0.25, 1, 0.5, 1],
+      duration: 0.25,
+      ease: [0.16, 1, 0.3, 1],
     },
   }),
 };
