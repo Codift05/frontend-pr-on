@@ -54,7 +54,7 @@ export default function EcosystemSlide() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center bg-noir-black bg-grid overflow-hidden px-8">
       {/* Ambient glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-neon-cyan/3 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-unsrat-blue/3 blur-[120px] pointer-events-none" />
 
       {/* Title */}
       <motion.div
@@ -63,10 +63,10 @@ export default function EcosystemSlide() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="mb-8 md:mb-12 text-center z-10"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-neon-cyan mb-3 uppercase">// Our tech ecosystem</p>
+        <p className="font-mono text-xs tracking-[0.3em] text-unsrat-light mb-3 uppercase">// Our tech ecosystem</p>
         <h2 className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white">
           ECOSYSTEM
-          <span className="text-neon-lime text-glow-lime"> & STACK</span>
+          <span className="text-unsrat-blue text-glow-blue"> & STACK</span>
         </h2>
       </motion.div>
 
@@ -104,7 +104,7 @@ export default function EcosystemSlide() {
               key={tech.name}
               variants={cardVariants}
               whileHover={{ scale: 1.08, y: -5 }}
-              className="absolute glass-card-neon p-4 flex flex-col items-center justify-center cursor-pointer transition-shadow duration-300 hover:glow-lime-strong"
+              className="absolute glass-card-blue p-4 flex flex-col items-center justify-center cursor-pointer transition-shadow duration-300 hover:glow-blue-strong"
               style={{
                 left: `${tech.x}%`,
                 top: `${tech.y}%`,

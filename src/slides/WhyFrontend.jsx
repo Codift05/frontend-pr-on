@@ -18,7 +18,7 @@ const itemVariants = {
 const reasons = [
   {
     Icon: Monitor,
-    color: '#ccff00',
+    color: '#5B8EC2',
     title: 'First Impression',
     desc: 'Frontend adalah hal pertama yang dilihat user. 94% kesan pertama terkait desain!',
   },
@@ -42,7 +42,7 @@ export default function WhyFrontend() {
   return (
     <div className="relative w-full h-full flex items-center justify-center bg-noir-black bg-dots overflow-hidden px-8">
       {/* Ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-neon-lime/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-unsrat-blue/5 blur-[120px] pointer-events-none" />
 
       <motion.div
         variants={containerVariants}
@@ -62,7 +62,7 @@ export default function WhyFrontend() {
         <div className="flex-1 text-left">
           <motion.p
             variants={itemVariants}
-            className="font-mono text-xs tracking-[0.3em] text-neon-cyan mb-3 uppercase"
+            className="font-mono text-xs tracking-[0.3em] text-unsrat-light mb-3 uppercase"
           >
             // Why it matters
           </motion.p>
@@ -71,7 +71,7 @@ export default function WhyFrontend() {
             className="font-sans font-black text-4xl md:text-6xl lg:text-7xl tracking-tighter text-white text-glow-white leading-[0.9] mb-8"
           >
             KENAPA
-            <span className="block text-neon-lime text-glow-lime">FRONTEND?</span>
+            <span className="block text-unsrat-blue text-glow-blue">FRONTEND?</span>
           </motion.h2>
 
           {/* Reason Cards */}
@@ -80,7 +80,7 @@ export default function WhyFrontend() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="glass-card p-4 flex items-start gap-4 hover:glow-lime transition-shadow duration-300"
+                className="glass-card p-4 flex items-start gap-4 hover:glow-blue transition-shadow duration-300"
               >
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"

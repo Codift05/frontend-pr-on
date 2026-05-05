@@ -132,7 +132,7 @@ export default function App() {
             onClick={() => goToSlide(i)}
             className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
               i === currentSlide
-                ? 'bg-neon-lime scale-125 shadow-[0_0_10px_rgba(204,255,0,0.5)]'
+                ? 'bg-unsrat-blue scale-125 shadow-[0_0_10px_rgba(91,142,194,0.5)]'
                 : 'bg-white/20 hover:bg-white/40'
             }`}
             aria-label={`Go to slide ${i + 1}`}

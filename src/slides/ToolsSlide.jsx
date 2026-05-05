@@ -31,7 +31,7 @@ const tools = [
 export default function ToolsSlide() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center bg-noir-black bg-grid overflow-hidden px-8">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-neon-cyan/3 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-unsrat-blue/3 blur-[120px] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, x: -40 }}
@@ -39,9 +39,9 @@ export default function ToolsSlide() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="mb-10 md:mb-14 text-center z-10"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-neon-cyan mb-3 uppercase">// Our daily weapons</p>
+        <p className="font-mono text-xs tracking-[0.3em] text-unsrat-light mb-3 uppercase">// Our daily weapons</p>
         <h2 className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white">
-          TOOLS<span className="text-neon-lime text-glow-lime"> KIT</span>
+          TOOLS<span className="text-unsrat-blue text-glow-blue"> KIT</span>
         </h2>
       </motion.div>
 
@@ -56,7 +56,7 @@ export default function ToolsSlide() {
             key={tool.name}
             variants={cardVariants}
             whileHover={{ scale: 1.04, y: -4 }}
-            className="glass-card p-6 flex flex-col items-center text-center cursor-pointer transition-shadow duration-300 hover:glow-lime"
+            className="glass-card p-6 flex flex-col items-center text-center cursor-pointer transition-shadow duration-300 hover:glow-blue"
           >
             <div
               className="w-14 h-14 rounded-xl flex items-center justify-center mb-3"

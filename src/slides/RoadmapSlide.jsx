@@ -15,7 +15,7 @@ const itemVariants = {
 };
 
 const steps = [
-  { phase: '01', title: 'HTML & CSS', desc: 'Fondasi struktur dan styling web', color: '#ccff00', Icon: Code2 },
+  { phase: '01', title: 'HTML & CSS', desc: 'Fondasi struktur dan styling web', color: '#5B8EC2', Icon: Code2 },
   { phase: '02', title: 'JavaScript', desc: 'Logika dan interaktivitas', color: '#00e5ff', Icon: Braces },
   { phase: '03', title: 'Framework', desc: 'React, Vue, atau Nuxt', color: '#ff6ec7', Icon: Layers },
   { phase: '04', title: 'Project!', desc: 'Bikin proyek nyata bareng tim', color: '#A259FF', Icon: FolderGit2 },
@@ -25,8 +25,8 @@ export default function RoadmapSlide() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center bg-noir-black overflow-hidden px-8">
       {/* Ambient */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-neon-lime/3 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-neon-cyan/3 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-unsrat-blue/3 blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-unsrat-blue/3 blur-[120px] pointer-events-none" />
 
       {/* Title */}
       <motion.div
@@ -35,9 +35,9 @@ export default function RoadmapSlide() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="mb-12 md:mb-16 text-center z-10"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-neon-cyan mb-3 uppercase">// Your journey</p>
+        <p className="font-mono text-xs tracking-[0.3em] text-unsrat-light mb-3 uppercase">// Your journey</p>
         <h2 className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white">
-          ROADMAP<span className="text-neon-lime text-glow-lime"> BELAJAR</span>
+          ROADMAP<span className="text-unsrat-blue text-glow-blue"> BELAJAR</span>
         </h2>
       </motion.div>
 
@@ -51,7 +51,7 @@ export default function RoadmapSlide() {
         {steps.map((step, i) => (
           <motion.div key={i} variants={itemVariants} className="flex items-center flex-1 w-full md:w-auto">
             {/* Card */}
-            <div className="glass-card p-6 flex-1 text-center hover:glow-lime transition-shadow duration-300">
+            <div className="glass-card p-6 flex-1 text-center hover:glow-blue transition-shadow duration-300">
               {/* Icon */}
               <div
                 className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"

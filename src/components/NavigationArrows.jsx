@@ -6,7 +6,6 @@ export default function NavigationArrows({ onPrev, onNext, current, total }) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-      {/* Previous */}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -15,7 +14,7 @@ export default function NavigationArrows({ onPrev, onNext, current, total }) {
         className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-all duration-300 cursor-pointer
           ${isFirst
             ? 'border-white/5 text-white/15 cursor-not-allowed'
-            : 'border-white/15 text-white/60 hover:border-neon-lime/50 hover:text-neon-lime hover:shadow-[0_0_15px_rgba(204,255,0,0.15)]'
+            : 'border-white/15 text-white/60 hover:border-unsrat-blue/50 hover:text-unsrat-blue hover:shadow-[0_0_15px_rgba(91,142,194,0.2)]'
           }`}
         aria-label="Previous slide"
       >
@@ -24,7 +23,6 @@ export default function NavigationArrows({ onPrev, onNext, current, total }) {
         </svg>
       </motion.button>
 
-      {/* Next */}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -33,7 +31,7 @@ export default function NavigationArrows({ onPrev, onNext, current, total }) {
         className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-all duration-300 cursor-pointer
           ${isLast
             ? 'border-white/5 text-white/15 cursor-not-allowed'
-            : 'border-white/15 text-white/60 hover:border-neon-lime/50 hover:text-neon-lime hover:shadow-[0_0_15px_rgba(204,255,0,0.15)]'
+            : 'border-white/15 text-white/60 hover:border-unsrat-blue/50 hover:text-unsrat-blue hover:shadow-[0_0_15px_rgba(91,142,194,0.2)]'
           }`}
         aria-label="Next slide"
       >

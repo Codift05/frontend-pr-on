@@ -16,7 +16,7 @@ const itemVariants = {
 };
 
 const resources = [
-  { name: 'freeCodeCamp', desc: 'Belajar gratis dari nol', color: '#ccff00', Icon: Flame },
+  { name: 'freeCodeCamp', desc: 'Belajar gratis dari nol', color: '#5B8EC2', Icon: Flame },
   { name: 'MDN Web Docs', desc: 'Dokumentasi lengkap web', color: '#ffffff', Icon: BookOpen },
   { name: 'YouTube', desc: 'Web Dev Simplified, Fireship', color: '#FF4444', Icon: Play },
   { name: 'W3Schools', desc: 'Try it yourself editor', color: '#04AA6D', Icon: Globe },
@@ -40,7 +40,7 @@ export default function ResourcesSlide() {
         <div className="flex-1">
           <motion.p
             variants={itemVariants}
-            className="font-mono text-xs tracking-[0.3em] text-neon-pink mb-3 uppercase"
+            className="font-mono text-xs tracking-[0.3em] text-accent-yellow mb-3 uppercase"
           >
             // Level up!
           </motion.p>
@@ -49,7 +49,7 @@ export default function ResourcesSlide() {
             className="font-sans font-black text-4xl md:text-6xl lg:text-7xl tracking-tighter text-white text-glow-white leading-[0.9] mb-10"
           >
             RESOURCES
-            <span className="block text-neon-lime text-glow-lime">BELAJAR</span>
+            <span className="block text-unsrat-blue text-glow-blue">BELAJAR</span>
           </motion.h2>
 
           {/* Resource list */}
@@ -58,7 +58,7 @@ export default function ResourcesSlide() {
               <motion.div
                 key={r.name}
                 variants={itemVariants}
-                className="glass-card px-4 py-3.5 flex items-center gap-3.5 hover:glow-lime transition-shadow duration-300"
+                className="glass-card px-4 py-3.5 flex items-center gap-3.5 hover:glow-blue transition-shadow duration-300"
               >
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"

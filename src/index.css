@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
-/* ===== Custom Theme ===== */
+/* ===== Custom Theme — UNSRAT Blue + Anime Cyberpunk ===== */
 @theme {
-  --color-noir-black: #000000;
-  --color-noir-dark: #0f0f0f;
+  --color-unsrat-blue: #5B8EC2;
+  --color-unsrat-dark: #3A6B9F;
+  --color-unsrat-light: #8BB5DC;
+  --color-noir-black: #0a0a0a;
+  --color-noir-dark: #111111;
   --color-noir-gray: #1a1a1a;
-  --color-noir-mid: #888888;
+  --color-noir-mid: #666666;
+  --color-accent-yellow: #FFD700;
+  --color-accent-cyan: #00d4ff;
+  --color-accent-pink: #ff4d8d;
   --color-neon-lime: #ccff00;
   --color-neon-cyan: #00e5ff;
   --color-neon-magenta: #ff00ff;
   --color-neon-pink: #ff6ec7;
-  
+
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -26,32 +32,29 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #000000;
+  background-color: #0a0a0a;
   color: #ffffff;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== Scrollbar Hide ===== */
-::-webkit-scrollbar {
-  display: none;
-}
+::-webkit-scrollbar { display: none; }
 
-/* ===== Grid Background Pattern ===== */
+/* ===== Background Patterns ===== */
 .bg-grid {
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(91,142,194,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,142,194,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .bg-dots {
-  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
-/* ===== Glassmorphism Card ===== */
+/* ===== Glassmorphism ===== */
 .glass-card {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(20px);
@@ -60,33 +63,28 @@ html, body, #root {
   border-radius: 16px;
 }
 
-.glass-card-neon {
-  background: rgba(204, 255, 0, 0.03);
+.glass-card-blue {
+  background: rgba(91, 142, 194, 0.06);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(204, 255, 0, 0.15);
+  border: 1px solid rgba(91, 142, 194, 0.15);
   border-radius: 16px;
 }
 
-/* ===== Neon Glow Effects ===== */
-.glow-lime {
-  box-shadow: 0 0 20px rgba(204, 255, 0, 0.15),
-              0 0 60px rgba(204, 255, 0, 0.05);
+/* ===== Glow Effects ===== */
+.glow-blue {
+  box-shadow: 0 0 30px rgba(91, 142, 194, 0.2),
+              0 0 80px rgba(91, 142, 194, 0.05);
 }
 
-.glow-lime-strong {
-  box-shadow: 0 0 30px rgba(204, 255, 0, 0.3),
-              0 0 80px rgba(204, 255, 0, 0.1);
+.glow-yellow {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2),
+              0 0 80px rgba(255, 215, 0, 0.05);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15),
-              0 0 60px rgba(0, 229, 255, 0.05);
-}
-
-.text-glow-lime {
-  text-shadow: 0 0 40px rgba(204, 255, 0, 0.3),
-               0 0 80px rgba(204, 255, 0, 0.1);
+.text-glow-blue {
+  text-shadow: 0 0 40px rgba(91, 142, 194, 0.4),
+               0 0 80px rgba(91, 142, 194, 0.1);
 }
 
 .text-glow-white {
@@ -94,7 +92,31 @@ html, body, #root {
                0 0 80px rgba(255, 255, 255, 0.05);
 }
 
-/* ===== Terminal Window Style ===== */
+.text-glow-yellow {
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+/* ===== Giant Background Text ===== */
+.bg-text {
+  position: absolute;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+/* ===== Diagonal Stripe ===== */
+.diagonal-stripe {
+  position: absolute;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+/* ===== Terminal Header ===== */
 .terminal-header {
   display: flex;
   align-items: center;
@@ -103,12 +125,7 @@ html, body, #root {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.terminal-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
+.terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
 .terminal-dot.red { background: #ff5f57; }
 .terminal-dot.yellow { background: #ffbd2e; }
 .terminal-dot.green { background: #28c840; }
@@ -124,14 +141,14 @@ html, body, #root {
   background-size: 256px 256px;
 }
 
-/* ===== Dashed Connector Lines ===== */
+/* ===== Connector Lines ===== */
 .connector-line {
   stroke-dasharray: 8, 6;
   stroke-width: 2;
   fill: none;
 }
 
-/* ===== Animated Scanline ===== */
+/* ===== Animations ===== */
 @keyframes scanline {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100vh); }
@@ -141,22 +158,11 @@ html, body, #root {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(91,142,194,0.15), transparent);
   animation: scanline 8s linear infinite;
   pointer-events: none;
 }
 
-/* ===== Pulse Animation ===== */
-@keyframes pulse-neon {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.animate-pulse-neon {
-  animation: pulse-neon 3s ease-in-out infinite;
-}
-
-/* ===== Floating Animation ===== */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -164,4 +170,13 @@ html, body, #root {
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+/* ===== Character Image Styles ===== */
+.character-img {
+  filter: drop-shadow(0 0 40px rgba(91, 142, 194, 0.3));
+}
+
+.character-img-yellow {
+  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.2));
 }
