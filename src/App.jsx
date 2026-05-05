@@ -33,25 +33,25 @@ const slides = [
 const slideVariants = {
   enter: (direction) => ({
     opacity: 0,
-    y: direction > 0 ? 60 : -60,
-    scale: 0.96,
+    x: direction > 0 ? 120 : -120,
+    scale: 0.98,
   }),
   center: {
     opacity: 1,
-    y: 0,
+    x: 0,
     scale: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.5,
+      ease: [0.25, 1, 0.5, 1],
     },
   },
   exit: (direction) => ({
     opacity: 0,
-    y: direction > 0 ? -60 : 60,
-    scale: 0.96,
+    x: direction > 0 ? -120 : 120,
+    scale: 0.98,
     transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.35,
+      ease: [0.25, 1, 0.5, 1],
     },
   }),
 };

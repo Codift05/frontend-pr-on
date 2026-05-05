@@ -56,7 +56,7 @@ export default function QASlide() {
           variants={itemVariants}
           className="mt-8 font-mono text-sm md:text-base text-noir-black/60 tracking-wider"
         >
-          Raise your hand or type in chat 💬
+          Raise your hand or type in chat
         </motion.p>
       </motion.div>
 

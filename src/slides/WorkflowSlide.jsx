@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { GitFork, GitBranch, Terminal, ArrowUpFromLine } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,7 +21,7 @@ const steps = [
     desc: 'Salin repository ke komputer kamu',
     code: 'git clone https://github.com/...',
     color: '#ccff00',
-    emoji: '📥',
+    Icon: GitFork,
   },
   {
     num: '2',
@@ -28,7 +29,7 @@ const steps = [
     desc: 'Kerja di branch sendiri, jangan di main!',
     code: 'git checkout -b fitur-baru',
     color: '#00e5ff',
-    emoji: '🌿',
+    Icon: GitBranch,
   },
   {
     num: '3',
@@ -36,7 +37,7 @@ const steps = [
     desc: 'Tulis kode, save, lalu commit',
     code: 'git add . && git commit -m "..."',
     color: '#ff6ec7',
-    emoji: '💻',
+    Icon: Terminal,
   },
   {
     num: '4',
@@ -44,7 +45,7 @@ const steps = [
     desc: 'Push ke GitHub, buat Pull Request',
     code: 'git push origin fitur-baru',
     color: '#A259FF',
-    emoji: '🚀',
+    Icon: ArrowUpFromLine,
   },
 ];
 
@@ -56,17 +57,17 @@ export default function WorkflowSlide() {
 
       {/* Title */}
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-8 md:mb-12 text-center z-10"
+        className="mb-10 md:mb-14 text-center z-10"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-neon-pink mb-3 uppercase">// Git for beginners</p>
         <h2 className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white">
           WORKFLOW
           <span className="text-neon-lime text-glow-lime"> GITHUB</span>
         </h2>
-        <p className="font-sans text-sm text-white/40 mt-3">Tenang, ini simpel kok! 4 langkah aja 😄</p>
+        <p className="font-sans text-sm text-white/40 mt-4">Tenang, ini simpel kok! 4 langkah aja.</p>
       </motion.div>
 
       {/* Steps */}
@@ -82,16 +83,16 @@ export default function WorkflowSlide() {
             variants={itemVariants}
             className="glass-card p-5 flex items-start gap-4 hover:glow-lime transition-shadow duration-300"
           >
-            {/* Number + Emoji */}
-            <div className="flex flex-col items-center gap-1 flex-shrink-0">
+            {/* Icon */}
+            <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{
                   backgroundColor: step.color + '12',
-                  border: `1px solid ${step.color}30`,
+                  border: `1px solid ${step.color}25`,
                 }}
               >
-                {step.emoji}
+                <step.Icon size={22} color={step.color} strokeWidth={1.5} />
               </div>
               <span className="font-mono text-[10px] font-bold" style={{ color: step.color }}>
                 STEP {step.num}
@@ -103,7 +104,7 @@ export default function WorkflowSlide() {
               <h3 className="font-sans font-bold text-base text-white">{step.title}</h3>
               <p className="font-sans text-xs text-white/40 mt-1">{step.desc}</p>
               {/* Code snippet */}
-              <div className="mt-2 px-3 py-2 rounded-lg bg-white/5 border border-white/5 font-mono text-[11px] text-neon-lime/70 overflow-x-auto">
+              <div className="mt-2.5 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.06] font-mono text-[11px] text-neon-lime/60 overflow-x-auto">
                 <span className="text-white/20">$ </span>{step.code}
               </div>
             </div>
@@ -118,7 +119,7 @@ export default function WorkflowSlide() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-8 font-mono text-xs text-noir-mid tracking-wider z-10"
       >
-        *Nanti kita praktek bareng step by step! 💪
+        Nanti kita praktek bareng step by step!
       </motion.p>
     </div>
   );

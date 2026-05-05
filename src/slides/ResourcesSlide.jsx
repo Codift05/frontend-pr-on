@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion';
+import { Flame, BookOpen, Play, Globe, Palette, Bot } from 'lucide-react';
 import resourcesImg from '../assets/learning_resources.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.4 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.4 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const resources = [
-  { name: 'freeCodeCamp', url: 'freecodecamp.org', emoji: '🔥', color: '#0a0a23', desc: 'Belajar gratis dari nol' },
-  { name: 'MDN Web Docs', url: 'developer.mozilla.org', emoji: '📖', color: '#ffffff', desc: 'Dokumentasi lengkap web' },
-  { name: 'YouTube', url: 'Web Dev Simplified, Fireship', emoji: '▶️', color: '#FF0000', desc: 'Tutorial video terbaik' },
-  { name: 'W3Schools', url: 'w3schools.com', emoji: '🌐', color: '#04AA6D', desc: 'Try it yourself editor' },
-  { name: 'CSS-Tricks', url: 'css-tricks.com', emoji: '🎨', color: '#ff6ec7', desc: 'Tips & trik CSS keren' },
-  { name: 'ChatGPT / AI', url: 'Tanya apa aja!', emoji: '🤖', color: '#00e5ff', desc: 'Asisten coding 24/7' },
+  { name: 'freeCodeCamp', desc: 'Belajar gratis dari nol', color: '#ccff00', Icon: Flame },
+  { name: 'MDN Web Docs', desc: 'Dokumentasi lengkap web', color: '#ffffff', Icon: BookOpen },
+  { name: 'YouTube', desc: 'Web Dev Simplified, Fireship', color: '#FF4444', Icon: Play },
+  { name: 'W3Schools', desc: 'Try it yourself editor', color: '#04AA6D', Icon: Globe },
+  { name: 'CSS-Tricks', desc: 'Tips & trik CSS keren', color: '#ff6ec7', Icon: Palette },
+  { name: 'ChatGPT / AI', desc: 'Asisten coding 24/7', color: '#00e5ff', Icon: Bot },
 ];
 
 export default function ResourcesSlide() {
@@ -45,7 +46,7 @@ export default function ResourcesSlide() {
           </motion.p>
           <motion.h2
             variants={itemVariants}
-            className="font-sans font-black text-4xl md:text-6xl lg:text-7xl tracking-tighter text-white text-glow-white leading-[0.9] mb-8"
+            className="font-sans font-black text-4xl md:text-6xl lg:text-7xl tracking-tighter text-white text-glow-white leading-[0.9] mb-10"
           >
             RESOURCES
             <span className="block text-neon-lime text-glow-lime">BELAJAR</span>
@@ -57,11 +58,16 @@ export default function ResourcesSlide() {
               <motion.div
                 key={r.name}
                 variants={itemVariants}
-                className="glass-card px-4 py-3 flex items-center gap-3 hover:glow-lime transition-shadow duration-300"
+                className="glass-card px-4 py-3.5 flex items-center gap-3.5 hover:glow-lime transition-shadow duration-300"
               >
-                <span className="text-xl flex-shrink-0">{r.emoji}</span>
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: r.color + '12', border: `1px solid ${r.color}20` }}
+                >
+                  <r.Icon size={18} color={r.color} strokeWidth={1.5} />
+                </div>
                 <div className="min-w-0">
-                  <h3 className="font-sans font-bold text-sm text-white truncate">{r.name}</h3>
+                  <h3 className="font-sans font-semibold text-sm text-white truncate">{r.name}</h3>
                   <p className="font-mono text-[10px] text-white/30 truncate">{r.desc}</p>
                 </div>
               </motion.div>
@@ -72,7 +78,7 @@ export default function ResourcesSlide() {
         {/* Right: Image */}
         <motion.div
           variants={itemVariants}
-          className="flex-shrink-0 w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-white/10 shadow-2xl hidden md:block"
+          className="flex-shrink-0 w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-white/10 shadow-2xl hidden lg:block"
         >
           <img src={resourcesImg} alt="Learning Resources" className="w-full h-full object-cover" />
         </motion.div>

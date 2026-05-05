@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Monitor, Users, TrendingUp } from 'lucide-react';
 import frontendImg from '../assets/frontend_importance.png';
 
 const containerVariants = {
@@ -10,35 +11,26 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: 30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const reasons = [
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ccff00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-      </svg>
-    ),
+    Icon: Monitor,
+    color: '#ccff00',
     title: 'First Impression',
     desc: 'Frontend adalah hal pertama yang dilihat user. 94% kesan pertama terkait desain!',
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-      </svg>
-    ),
+    Icon: Users,
+    color: '#00e5ff',
     title: 'User Experience',
     desc: 'Kita yang bikin website enak dipakai, responsif, dan cepat.',
   },
   {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6ec7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-      </svg>
-    ),
+    Icon: TrendingUp,
+    color: '#ff6ec7',
     title: 'Demand Tinggi',
     desc: 'Frontend developer paling dicari di industri tech Indonesia.',
   },
@@ -83,29 +75,32 @@ export default function WhyFrontend() {
           </motion.h2>
 
           {/* Reason Cards */}
-          <div className="space-y-4 mb-8">
+          <div className="space-y-3 mb-8">
             {reasons.map((r, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
                 className="glass-card p-4 flex items-start gap-4 hover:glow-lime transition-shadow duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  {r.icon}
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: r.color + '12', border: `1px solid ${r.color}25` }}
+                >
+                  <r.Icon size={20} color={r.color} strokeWidth={1.5} />
                 </div>
                 <div>
                   <h3 className="font-sans font-bold text-sm text-white">{r.title}</h3>
-                  <p className="font-sans text-xs text-white/50 mt-1 leading-relaxed">{r.desc}</p>
+                  <p className="font-sans text-xs text-white/40 mt-1 leading-relaxed">{r.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
 
           {/* App logos */}
-          <motion.div variants={itemVariants} className="flex items-center gap-3 flex-wrap">
-            <span className="font-mono text-[10px] text-white/30 mr-1">Dipakai oleh:</span>
+          <motion.div variants={itemVariants} className="flex items-center gap-2.5 flex-wrap">
+            <span className="font-mono text-[10px] text-white/25 mr-1">Dipakai oleh:</span>
             {apps.map((app) => (
-              <span key={app} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[11px] text-white/50">
+              <span key={app} className="px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] font-mono text-[11px] text-white/40">
                 {app}
               </span>
             ))}

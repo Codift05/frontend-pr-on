@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Target, CheckCircle2 } from 'lucide-react';
 import visiBg from '../assets/visi_bg.png';
 
 const containerVariants = {
@@ -18,7 +19,7 @@ export default function VisiMisiSlide() {
   return (
     <div className="relative w-full h-full flex items-center justify-center bg-noir-black overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-25">
         <img src={visiBg} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-noir-black via-noir-black/80 to-transparent" />
@@ -41,7 +42,7 @@ export default function VisiMisiSlide() {
         {/* Title */}
         <motion.h2
           variants={itemVariants}
-          className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white leading-[0.9] mb-12"
+          className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white leading-[0.9] mb-14"
         >
           VISI & MISI
           <span className="block text-neon-lime text-glow-lime">DIVISI</span>
@@ -54,16 +55,14 @@ export default function VisiMisiSlide() {
             variants={itemVariants}
             className="glass-card p-8 flex-1 max-w-md text-left"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-neon-lime/10 border border-neon-lime/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccff00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-                </svg>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-lg bg-neon-lime/10 border border-neon-lime/20 flex items-center justify-center">
+                <Target size={20} color="#ccff00" strokeWidth={1.5} />
               </div>
               <h3 className="font-sans font-bold text-xl text-neon-lime">VISI</h3>
             </div>
-            <p className="font-sans text-base text-white/70 leading-relaxed">
-              Mencetak developer frontend yang <span className="text-white font-semibold">kompeten</span>, <span className="text-white font-semibold">kolaboratif</span>, dan siap membangun produk digital yang <span className="text-neon-lime font-semibold">berdampak</span>.
+            <p className="font-sans text-sm text-white/60 leading-relaxed">
+              Mencetak developer frontend yang <span className="text-white font-medium">kompeten</span>, <span className="text-white font-medium">kolaboratif</span>, dan siap membangun produk digital yang <span className="text-neon-lime font-medium">berdampak</span>.
             </p>
           </motion.div>
 
@@ -72,25 +71,23 @@ export default function VisiMisiSlide() {
             variants={itemVariants}
             className="glass-card p-8 flex-1 max-w-md text-left"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-lg bg-neon-cyan/10 border border-neon-cyan/20 flex items-center justify-center">
+                <CheckCircle2 size={20} color="#00e5ff" strokeWidth={1.5} />
               </div>
               <h3 className="font-sans font-bold text-xl text-neon-cyan">MISI</h3>
             </div>
-            <ul className="space-y-3 font-sans text-sm text-white/70 leading-relaxed">
-              <li className="flex items-start gap-2">
-                <span className="text-neon-cyan mt-1">▸</span>
+            <ul className="space-y-3 font-sans text-sm text-white/60 leading-relaxed">
+              <li className="flex items-start gap-2.5">
+                <span className="text-neon-cyan/60 mt-0.5 text-xs">01</span>
                 <span>Memberikan pelatihan <span className="text-white font-medium">HTML, CSS, JavaScript</span> hingga framework modern</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neon-cyan mt-1">▸</span>
+              <li className="flex items-start gap-2.5">
+                <span className="text-neon-cyan/60 mt-0.5 text-xs">02</span>
                 <span>Membangun budaya <span className="text-white font-medium">kolaborasi & code review</span></span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neon-cyan mt-1">▸</span>
+              <li className="flex items-start gap-2.5">
+                <span className="text-neon-cyan/60 mt-0.5 text-xs">03</span>
                 <span>Mengerjakan <span className="text-white font-medium">proyek nyata</span> yang bisa jadi portfolio</span>
               </li>
             </ul>
