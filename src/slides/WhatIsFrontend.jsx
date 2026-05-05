@@ -38,24 +38,25 @@ export default function WhatIsFrontend() {
       >
         <motion.p
           variants={wordVariants}
-          className="font-mono text-sm tracking-[0.3em] text-gray-400 mb-6 uppercase"
+          className="font-mono text-sm tracking-[0.3em] text-gray-400 mb-8 uppercase"
         >
           // Slide 03
         </motion.p>
 
-        {['APA', 'ITU', 'FRONTEND', 'WEB', 'DEVELOPMENT?'].map((word, i) => (
-          <motion.span
-            key={i}
-            variants={wordVariants}
-            className="inline-block font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tight text-gray-900 mr-4 md:mr-6 leading-tight"
-          >
-            {word}
-          </motion.span>
-        ))}
+        <motion.h2
+          variants={wordVariants}
+          className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tight text-gray-900 leading-[1.05] mb-10"
+        >
+          APA ITU
+          <br />
+          FRONTEND WEB
+          <br />
+          DEVELOPMENT?
+        </motion.h2>
 
         <motion.div
           variants={wordVariants}
-          className="mt-10 mx-auto max-w-2xl"
+          className="mx-auto max-w-xl"
         >
           <p className="font-sans text-base md:text-lg text-gray-500 leading-relaxed">
             Frontend web development adalah seni dan ilmu membangun antarmuka pengguna
@@ -66,15 +67,15 @@ export default function WhatIsFrontend() {
 
         <motion.div
           variants={wordVariants}
-          className="mt-8 flex items-center justify-center gap-4 font-mono text-xs text-gray-400"
+          className="mt-8 flex items-center justify-center gap-3 font-mono text-xs text-gray-400"
         >
-          <span className="px-3 py-1 rounded-full border border-gray-300">HTML</span>
+          <span className="px-3 py-1.5 rounded-full border border-gray-300">HTML</span>
           <span className="text-gray-300">+</span>
-          <span className="px-3 py-1 rounded-full border border-gray-300">CSS</span>
+          <span className="px-3 py-1.5 rounded-full border border-gray-300">CSS</span>
           <span className="text-gray-300">+</span>
-          <span className="px-3 py-1 rounded-full border border-gray-300">JavaScript</span>
+          <span className="px-3 py-1.5 rounded-full border border-gray-300">JavaScript</span>
           <span className="text-gray-300">=</span>
-          <span className="px-3 py-1 rounded-full border border-gray-900 text-gray-900 font-semibold">Frontend</span>
+          <span className="px-3 py-1.5 rounded-full border border-gray-900 text-gray-900 font-semibold">Frontend</span>
         </motion.div>
       </motion.div>
 
