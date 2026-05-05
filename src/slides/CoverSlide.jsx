@@ -1,71 +1,69 @@
 import { motion } from 'framer-motion';
 import gojoImg from '../assets/Gojo2.png';
+import unsratImg from '../assets/unsrat.png';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-};
-
-const fadeIn = {
+const fadeIn = (delay = 0) => ({
   hidden: { opacity: 0 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    transition: { duration: 0.5, delay },
-  }),
-};
+  visible: { opacity: 1, transition: { duration: 0.5, delay } },
+});
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-};
+const slideUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay } },
+});
+
+const slideLeft = (delay = 0) => ({
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay } },
+});
 
 export default function CoverSlide() {
   return (
     <div className="relative w-full h-full overflow-hidden select-none"
       style={{
-        background: 'linear-gradient(135deg, #1a2d4a 0%, #2a4570 20%, #5B8EC2 50%, #8BB5DC 80%, #c8ddf0 100%)',
+        background: 'linear-gradient(135deg, #1a2d4a 0%, #3A6B9F 30%, #5B8EC2 55%, #8BB5DC 80%, #d0e2f0 100%)',
       }}
     >
-      {/* === LAYER 1: Background gradient shapes === */}
-      <div className="absolute top-0 right-0 w-[60%] h-full"
+      {/* === BG: UNSRAT building image (behind everything) === */}
+      <motion.div
+        variants={fadeIn(0.1)}
+        initial="hidden"
+        animate="visible"
+        className="absolute right-0 bottom-0 w-[55%] h-full z-[1] opacity-25"
+      >
+        <img src={unsratImg} alt="" className="w-full h-full object-cover object-left" />
+      </motion.div>
+
+      {/* Gradient overlay on right to blend building */}
+      <div className="absolute inset-0 z-[2]"
         style={{
-          background: 'linear-gradient(135deg, transparent 0%, rgba(200,221,240,0.3) 50%, rgba(255,255,255,0.4) 100%)',
+          background: 'linear-gradient(90deg, rgba(58,107,159,0.95) 0%, rgba(58,107,159,0.7) 40%, transparent 70%)',
         }}
       />
 
-      {/* Diagonal white stripe — top */}
-      <div className="absolute w-[200%] h-[120px] -left-[50%] top-[15%] bg-white/[0.07]"
+      {/* === Diagonal stripes === */}
+      <div className="absolute w-[200%] h-[100px] -left-[50%] top-[25%] bg-white/[0.04] z-[3]"
         style={{ transform: 'rotate(-5deg)' }}
       />
-      {/* Diagonal white stripe — bottom */}
-      <div className="absolute w-[200%] h-[80px] -left-[50%] bottom-[20%] bg-white/[0.05]"
+      <div className="absolute w-[200%] h-[60px] -left-[50%] bottom-[25%] bg-white/[0.03] z-[3]"
         style={{ transform: 'rotate(-5deg)' }}
       />
-      {/* Thin accent line */}
-      <div className="absolute w-[200%] h-[3px] -left-[50%] top-[55%]"
-        style={{ transform: 'rotate(-5deg)', background: 'linear-gradient(90deg, transparent, rgba(255,215,0,0.4), transparent)' }}
+      <div className="absolute w-[200%] h-[2px] -left-[50%] top-[50%] z-[3]"
+        style={{ transform: 'rotate(-5deg)', background: 'linear-gradient(90deg, transparent 20%, rgba(255,215,0,0.3) 50%, transparent 80%)' }}
       />
 
-      {/* === LAYER 2: Giant background text (behind character) === */}
+      {/* === Giant background text — outline only === */}
       <motion.div
-        variants={fadeIn}
+        variants={fadeIn(0.15)}
         initial="hidden"
         animate="visible"
-        custom={0.1}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] pointer-events-none z-10"
+        className="absolute top-1/2 left-1/2 -translate-x-[48%] -translate-y-[55%] z-[4] pointer-events-none"
       >
-        <div className="font-sans font-black text-[18vw] md:text-[16vw] leading-[0.8] tracking-[-0.04em] text-center whitespace-nowrap"
+        <div
+          className="font-display text-[22vw] leading-[0.85] tracking-[0.02em] whitespace-nowrap"
           style={{
             color: 'transparent',
-            WebkitTextStroke: '2px rgba(255,255,255,0.12)',
+            WebkitTextStroke: '2px rgba(255,255,255,0.08)',
           }}
         >
           FRONT
@@ -74,181 +72,160 @@ export default function CoverSlide() {
         </div>
       </motion.div>
 
-      {/* Shadow duplicate text (offset) */}
+      {/* === Shadow/duplicate text (offset) === */}
       <motion.div
-        variants={fadeIn}
+        variants={fadeIn(0.2)}
         initial="hidden"
         animate="visible"
-        custom={0.15}
-        className="absolute top-1/2 left-1/2 pointer-events-none z-[9]"
-        style={{ transform: 'translate(-47%, -50%)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-[52%] -translate-y-[50%] z-[5] pointer-events-none"
       >
-        <div className="font-sans font-black text-[18vw] md:text-[16vw] leading-[0.8] tracking-[-0.04em] text-center whitespace-nowrap text-white/[0.04]">
+        <div className="font-display text-[22vw] leading-[0.85] tracking-[0.02em] whitespace-nowrap text-white/[0.03]">
           FRONT
           <br />
           END
         </div>
       </motion.div>
 
-      {/* === LAYER 3: Character image (center) === */}
+      {/* === Character — Gojo2 (center-right) === */}
       <motion.div
-        variants={scaleIn}
+        variants={slideLeft(0.3)}
         initial="hidden"
         animate="visible"
-        custom={0.2}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 h-[80%] md:h-[90%] lg:h-[95%]"
+        className="absolute bottom-0 right-[5%] md:right-[12%] z-[10] h-[78%] md:h-[88%] lg:h-[95%]"
       >
         <img
           src={gojoImg}
           alt="Gojo - Frontend Division"
           className="h-full w-auto object-contain"
-          style={{
-            filter: 'drop-shadow(0 0 60px rgba(91,142,194,0.3)) drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
-          }}
+          style={{ filter: 'drop-shadow(0 0 40px rgba(30,60,100,0.4))' }}
         />
       </motion.div>
 
-      {/* === LAYER 4: Foreground text & badges (in front of character) === */}
-
-      {/* Top-left: "ONBOARDING" label */}
+      {/* === Foreground text: Top-left main title === */}
       <motion.div
-        variants={fadeUp}
+        variants={slideUp(0.4)}
         initial="hidden"
         animate="visible"
-        custom={0.5}
-        className="absolute top-6 md:top-8 left-6 md:left-10 z-30"
+        className="absolute top-8 md:top-12 left-6 md:left-12 z-[20]"
       >
-        <div className="flex items-center gap-2 mb-1">
-          <div className="w-2 h-2 rounded-full bg-accent-yellow animate-pulse" />
-          <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-white/60 uppercase">Onboarding</span>
+        {/* Small label */}
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-accent-yellow" />
+          <span className="font-condensed text-xs md:text-sm tracking-[0.15em] text-white/60 uppercase">Onboarding Division</span>
         </div>
-        <div className="font-sans font-black text-4xl md:text-6xl lg:text-7xl text-white leading-none tracking-tight"
-          style={{ textShadow: '2px 2px 0 rgba(0,0,0,0.2), 0 0 30px rgba(91,142,194,0.3)' }}
-        >
+
+        {/* Main title — Bebas Neue, no shadow */}
+        <h1 className="font-display text-[4.5rem] md:text-[7rem] lg:text-[9rem] leading-[0.9] tracking-[0.02em] text-white">
           FRONT
-          <span className="text-accent-yellow" style={{ textShadow: '0 0 20px rgba(255,215,0,0.4)' }}>END</span>
+          <span className="text-accent-yellow">END</span>
+        </h1>
+      </motion.div>
+
+      {/* === Left-middle: Role labels === */}
+      <motion.div
+        variants={slideUp(0.55)}
+        initial="hidden"
+        animate="visible"
+        className="absolute top-[45%] md:top-[42%] left-6 md:left-12 z-[20]"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <span className="font-display text-3xl md:text-5xl text-white tracking-wider">DEVELOPER</span>
+          <span className="px-2.5 py-1 bg-accent-yellow font-condensed text-xs md:text-sm font-bold text-noir-black tracking-wider uppercase">
+            WEB
+          </span>
+        </div>
+        <div className="font-condensed text-sm md:text-base text-white/40 tracking-[0.15em] uppercase">
+          Codift <span className="text-white/20 mx-1">|</span> Frontend Division
         </div>
       </motion.div>
 
-      {/* Top-right: "DEVELOPER" rotated tag */}
+      {/* === Bottom-left: UNSRAT label === */}
       <motion.div
-        variants={fadeIn}
+        variants={slideUp(0.7)}
         initial="hidden"
         animate="visible"
-        custom={0.7}
-        className="absolute top-8 right-6 md:right-10 z-30"
+        className="absolute bottom-8 md:bottom-12 left-6 md:left-12 z-[20]"
       >
-        <div className="font-sans font-black text-sm md:text-base tracking-wider text-white/70 uppercase"
-          style={{ writingMode: 'vertical-rl', textShadow: '1px 1px 0 rgba(0,0,0,0.2)' }}
-        >
-          DEVELOPER
+        <div className="font-condensed text-xs tracking-[0.2em] text-white/40 uppercase mb-1">
+          Universitas Sam Ratulangi
+        </div>
+        <div className="font-condensed text-xs tracking-[0.15em] text-white/25 uppercase">
+          Fakultas Teknik
         </div>
       </motion.div>
 
-      {/* Left side: "DIVISION" vertical text */}
+      {/* === Bottom-right: Year/season === */}
       <motion.div
-        variants={fadeIn}
+        variants={slideUp(0.65)}
         initial="hidden"
         animate="visible"
-        custom={0.8}
-        className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-30"
+        className="absolute bottom-8 md:bottom-12 right-6 md:right-12 z-[20] text-right"
       >
-        <div className="font-mono text-[10px] tracking-[0.3em] text-white/30 uppercase"
+        <div className="font-condensed text-xs tracking-[0.2em] text-white/50 uppercase mb-1">
+          Season
+        </div>
+        <div className="font-display text-6xl md:text-8xl text-white leading-none">
+          20<span className="text-accent-yellow">26</span>
+        </div>
+      </motion.div>
+
+      {/* === Right side: Vertical text === */}
+      <motion.div
+        variants={fadeIn(0.9)}
+        initial="hidden"
+        animate="visible"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-[20] hidden md:block"
+      >
+        <div className="font-condensed text-[10px] tracking-[0.3em] text-white/20 uppercase"
           style={{ writingMode: 'vertical-rl' }}
         >
-          DIVISION
+          FRONTEND DEVELOPMENT
         </div>
       </motion.div>
 
-      {/* Right side: "UNSRAT" vertical text */}
+      {/* === Left side: Vertical text === */}
       <motion.div
-        variants={fadeIn}
+        variants={fadeIn(0.9)}
         initial="hidden"
         animate="visible"
-        custom={0.8}
-        className="absolute right-6 md:right-10 bottom-1/3 z-30"
+        className="absolute left-4 bottom-1/3 z-[20] hidden md:block"
       >
-        <div className="font-mono text-[10px] tracking-[0.3em] text-white/30 uppercase"
+        <div className="font-condensed text-[10px] tracking-[0.3em] text-white/20 uppercase"
           style={{ writingMode: 'vertical-rl' }}
         >
           UNSRAT
         </div>
       </motion.div>
 
-      {/* Bottom-left: Character name + role label */}
+      {/* === Floating badge: top-right area === */}
       <motion.div
-        variants={fadeUp}
+        variants={fadeIn(0.8)}
         initial="hidden"
         animate="visible"
-        custom={0.6}
-        className="absolute bottom-16 md:bottom-12 left-6 md:left-10 z-30"
+        className="absolute top-[18%] right-[18%] md:right-[25%] z-[20]"
       >
-        <div className="flex items-end gap-3 mb-2">
-          <span className="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-wide"
-            style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.3)' }}
-          >
-            DEVELOPER
-          </span>
-          <span className="px-2 py-0.5 rounded bg-accent-yellow/90 font-mono text-[10px] font-bold text-noir-black tracking-wider">
-            FRONTEND
-          </span>
-        </div>
-        <div className="font-mono text-[10px] text-white/40 tracking-wider">
-          CODIFT
-          <span className="text-white/20 mx-2">|</span>
-          FRONTEND DIVISION
+        <div className="px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/15 rounded font-condensed text-xs text-white/70 tracking-wider uppercase">
+          Web Dev
         </div>
       </motion.div>
 
-      {/* Bottom-right: Year/Season badge */}
+      {/* === Floating badge: left-center === */}
       <motion.div
-        variants={fadeUp}
+        variants={fadeIn(0.85)}
         initial="hidden"
         animate="visible"
-        custom={0.7}
-        className="absolute bottom-12 md:bottom-12 right-6 md:right-10 z-30 text-right"
+        className="absolute top-[58%] left-[5%] z-[20] hidden md:block"
       >
-        <div className="font-mono text-[10px] text-white/50 tracking-wider uppercase mb-1">
-          Onboarding
-        </div>
-        <div className="font-sans font-black text-5xl md:text-7xl text-white leading-none"
-          style={{ textShadow: '2px 2px 0 rgba(0,0,0,0.2), 0 0 30px rgba(255,255,255,0.1)' }}
-        >
-          20<span className="text-accent-yellow" style={{ textShadow: '0 0 20px rgba(255,215,0,0.3)' }}>26</span>
-        </div>
-      </motion.div>
-
-      {/* Floating badge: top center-right */}
-      <motion.div
-        variants={scaleIn}
-        initial="hidden"
-        animate="visible"
-        custom={0.9}
-        className="absolute top-[20%] right-[15%] md:right-[20%] z-30"
-      >
-        <div className="px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 font-mono text-[10px] text-white/80 tracking-wider">
-          WEB DEV
-        </div>
-      </motion.div>
-
-      {/* Floating badge: left center */}
-      <motion.div
-        variants={scaleIn}
-        initial="hidden"
-        animate="visible"
-        custom={1}
-        className="absolute top-[40%] left-[8%] z-30 hidden md:block"
-      >
-        <div className="px-3 py-1.5 rounded-lg bg-accent-yellow/20 backdrop-blur-sm border border-accent-yellow/30 font-sans font-bold text-xs text-accent-yellow tracking-wider">
+        <div className="px-3 py-1.5 bg-accent-yellow/15 border border-accent-yellow/25 rounded font-condensed text-xs text-accent-yellow tracking-wider uppercase">
           UNSRAT
         </div>
       </motion.div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white/15 z-30" />
-      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white/15 z-30" />
-      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white/15 z-30" />
-      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white/15 z-30" />
+      {/* Corner brackets */}
+      <div className="absolute top-3 left-3 w-6 h-6 border-l-[2px] border-t-[2px] border-white/15 z-[20]" />
+      <div className="absolute top-3 right-3 w-6 h-6 border-r-[2px] border-t-[2px] border-white/15 z-[20]" />
+      <div className="absolute bottom-3 left-3 w-6 h-6 border-l-[2px] border-b-[2px] border-white/15 z-[20]" />
+      <div className="absolute bottom-3 right-3 w-6 h-6 border-r-[2px] border-b-[2px] border-white/15 z-[20]" />
     </div>
   );
 }
