@@ -1,100 +1,140 @@
-import { motion } from 'framer-motion';
-import { Code2, Braces, Layers, FolderGit2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.4 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
+// Import real logos provided by the user
+import htmlLogo from '../assets/html.png';
+import cssLogo from '../assets/css.png';
+import jsLogo from '../assets/JS.png';
+import reactLogo from '../assets/react.svg';
+import nextLogo from '../assets/next.png';
+import githubLogo from '../assets/github.png';
+import vscodeLogo from '../assets/vscode.png';
 
 const steps = [
-  { phase: '01', title: 'HTML & CSS', desc: 'Fondasi struktur dan styling web', color: '#5B8EC2', Icon: Code2 },
-  { phase: '02', title: 'JavaScript', desc: 'Logika dan interaktivitas', color: '#00e5ff', Icon: Braces },
-  { phase: '03', title: 'Framework', desc: 'React, Vue, atau Nuxt', color: '#ff6ec7', Icon: Layers },
-  { phase: '04', title: 'Project!', desc: 'Bikin proyek nyata bareng tim', color: '#A259FF', Icon: FolderGit2 },
+  { 
+    title: 'HTML & CSS', 
+    desc: 'Seni dan ilmu membangun antarmuka pengguna yang interaktif dan responsif — bagian yang dilihat dan dirasakan langsung oleh user. Fondasi utama styling web.', 
+    color: '#3b82f6', // Blue
+    logos: [htmlLogo, cssLogo]
+  },
+  { 
+    title: 'JAVASCRIPT', 
+    desc: 'Memberikan "nyawa" dan logika pada antarmuka statis. Mengolah interaksi dari yang paling sederhana hingga manajemen state aplikasi yang kompleks.', 
+    color: '#eab308', // Yellow
+    logos: [jsLogo]
+  },
+  { 
+    title: 'FRAMEWORK', 
+    desc: 'Beranjak dari vanilla ke teknologi modern. Memanfaatkan ekosistem React, Vue, atau Next untuk membangun Single Page Application yang efisien dan modular.', 
+    color: '#ec4899', // Pink
+    logos: [reactLogo, nextLogo]
+  },
+  { 
+    title: 'PROJECT!', 
+    desc: 'Waktunya eksekusi nyata. Bekerja dalam tim menggunakan Git, menulis kode dengan bersih, dan mewujudkan desain Figma ke dalam sistem yang berfungsi penuh.', 
+    color: '#8b5cf6', // Purple
+    logos: [vscodeLogo, githubLogo]
+  },
 ];
 
-export default function RoadmapSlide() {
+export default function RoadmapSlide({ activeStep = 0 }) {
+  const active = activeStep;
+
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-noir-black overflow-hidden px-8">
-      {/* Ambient */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-unsrat-blue/3 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-unsrat-blue/3 blur-[120px] pointer-events-none" />
+    <div className="relative w-full h-full flex flex-col md:flex-row bg-[#f8fafc] overflow-hidden font-sans">
+      
+      {/* Subtle Slide Identifier */}
+      <div className="absolute top-6 right-8 md:top-8 md:right-12 z-50 pointer-events-none">
+        <p className="font-mono text-[10px] tracking-widest text-slate-400 uppercase">
+           {active + 1} / {steps.length} — Roadmap Belajar
+        </p>
+      </div>
 
-      {/* Title */}
-      <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-12 md:mb-16 text-center z-10"
-      >
-        <p className="font-mono text-xs tracking-[0.3em] text-unsrat-light mb-3 uppercase">// Your journey</p>
-        <h2 className="font-sans font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-white text-glow-white">
-          ROADMAP<span className="text-unsrat-blue text-glow-blue"> BELAJAR</span>
-        </h2>
-      </motion.div>
+      {steps.map((step, index) => {
+        const isActive = active === index;
 
-      {/* Timeline */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 flex flex-col md:flex-row items-stretch gap-4 md:gap-0 max-w-5xl w-full"
-      >
-        {steps.map((step, i) => (
-          <motion.div key={i} variants={itemVariants} className="flex items-center flex-1 w-full md:w-auto">
-            {/* Card */}
-            <div className="glass-card p-6 flex-1 text-center hover:glow-blue transition-shadow duration-300">
-              {/* Icon */}
-              <div
-                className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"
-                style={{ backgroundColor: step.color + '12', border: `1px solid ${step.color}30` }}
-              >
-                <step.Icon size={24} color={step.color} strokeWidth={1.5} />
+        return (
+          <motion.div
+            key={index}
+            layout
+            transition={{ layout: { type: "spring", bounce: 0.15, duration: 0.8 } }}
+            className={`relative h-full overflow-hidden transition-colors duration-500 border-t md:border-t-0 md:border-l flex flex-col md:flex-row items-center md:items-start ${isActive ? 'flex-[4] md:flex-[5] bg-white' : 'flex-[1] bg-slate-50'}`}
+            style={{ 
+              borderColor: isActive ? step.color : '#e2e8f0', 
+              borderLeftWidth: isActive && window.innerWidth >= 768 ? '4px' : '1px',
+              borderTopWidth: isActive && window.innerWidth < 768 ? '4px' : '1px'
+            }}
+          >
+            {/* Inner fixed-width container so content doesn't squash, it just gets clipped by overflow */}
+            <div className="absolute top-0 left-0 w-[100vw] md:w-[70vw] h-[100vh] md:h-full p-8 pl-8 pr-4 md:pl-24 lg:pl-32 md:pr-16 flex flex-col justify-center pointer-events-none">
+              
+              {/* TOP: Huge Number & Subtitle */}
+              <div className="flex flex-col justify-start w-[85vw] md:w-[600px] flex-shrink-0 mt-[-5%]">
+                <motion.h2 
+                  animate={{ x: isActive ? 0 : -30, opacity: isActive ? 1 : 0.3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="font-sans font-black text-7xl md:text-[140px] leading-none tracking-tighter select-none" 
+                  style={{ color: isActive ? `${step.color}15` : '#cbd5e1' }}
+                >
+                  0{index + 1}
+                </motion.h2>
+                <p 
+                  className={`font-mono text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8 mt-2 md:mt-[-10px] transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-0 md:opacity-40'}`} 
+                  style={{ color: step.color }}
+                >
+                  Fase Pembelajaran
+                </p>
               </div>
 
-              {/* Phase badge */}
-              <div
-                className="inline-block px-3 py-1 rounded-full font-mono text-[10px] font-bold mb-3"
-                style={{ backgroundColor: step.color + '10', color: step.color, border: `1px solid ${step.color}20` }}
-              >
-                FASE {step.phase}
+              {/* BOTTOM: Title, Description, and Logos */}
+              <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12 w-full max-w-3xl">
+                
+                {/* Left: Title & Description */}
+                <div className="flex flex-col w-full md:w-[350px] lg:w-[450px]">
+                  <motion.h3 
+                    animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25, delay: isActive ? 0.1 : 0 }}
+                    className={`font-sans font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-none mb-4 whitespace-nowrap md:whitespace-normal truncate md:overflow-visible`}
+                    style={{ color: '#1e293b' }}
+                  >
+                    {step.title}
+                  </motion.h3>
+                  
+                  {/* Description - justified text with slide effect */}
+                  <motion.p 
+                    animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25, delay: isActive ? 0.15 : 0 }}
+                    className="font-sans font-normal text-xs md:text-sm lg:text-base text-slate-500 leading-relaxed text-justify pointer-events-auto"
+                  >
+                    {step.desc}
+                  </motion.p>
+                </div>
+
+                {/* Right: Logos placed neatly beside text (NO SHADOWS/CARDS) */}
+                <motion.div 
+                  animate={{ opacity: isActive ? 1 : 0 }}
+                  transition={{ duration: 0.8, delay: isActive ? 0.2 : 0 }}
+                  className="flex flex-row md:flex-wrap items-center justify-start gap-6 mt-2 pointer-events-auto"
+                >
+                  {step.logos.map((logo, i) => (
+                    <motion.div 
+                      key={`logo-${i}`}
+                      initial={{ scale: 0.5, opacity: 0, x: 20 }}
+                      animate={{ scale: isActive ? 1 : 0.8, opacity: isActive ? 1 : 0, x: isActive ? 0 : 20 }}
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.8, delay: isActive ? 0.25 + (i * 0.1) : 0 }}
+                      className="flex items-center justify-center cursor-pointer"
+                    >
+                      <img src={logo} alt="Technology Logo" className="w-16 h-16 lg:w-20 lg:h-20 object-contain drop-shadow-sm" />
+                    </motion.div>
+                  ))}
+                </motion.div>
+
               </div>
-
-              {/* Title */}
-              <h3 className="font-sans font-bold text-base text-white">{step.title}</h3>
-
-              {/* Desc */}
-              <p className="font-sans text-xs text-white/40 mt-1 leading-relaxed">{step.desc}</p>
             </div>
-
-            {/* Arrow connector (not on last) */}
-            {i < steps.length - 1 && (
-              <div className="hidden md:flex items-center px-2 flex-shrink-0">
-                <div className="w-6 h-[1px]" style={{ backgroundColor: step.color + '40' }} />
-                <div className="w-0 h-0 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent border-l-[6px]" style={{ borderLeftColor: steps[i+1].color + '50' }} />
-              </div>
-            )}
           </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Bottom note */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 font-mono text-xs text-noir-mid tracking-wider z-10"
-      >
-        Gak perlu bisa semua sekarang — kita belajar bareng!
-      </motion.p>
+        );
+      })}
     </div>
   );
 }
