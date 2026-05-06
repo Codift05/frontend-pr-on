@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 // Import all real logos provided by the user
@@ -38,9 +38,20 @@ const getPosition = (angle, radius) => {
   };
 };
 
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  return width;
+}
+
 export default function EcosystemSlide() {
-  // Base radius size that adapts to screen
-  const radius = window.innerWidth < 768 ? 130 : 220;
+  const windowWidth = useWindowWidth();
+  // Responsive radius: small screens get smaller orbit
+  const radius = windowWidth < 640 ? 110 : windowWidth < 768 ? 140 : windowWidth < 1024 ? 180 : 220;
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#f1f5f9] overflow-hidden px-8">

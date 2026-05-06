@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import real logos provided by the user
@@ -37,8 +37,20 @@ const steps = [
   },
 ];
 
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  return width;
+}
+
 export default function RoadmapSlide({ activeStep = 0 }) {
   const active = activeStep;
+  const windowWidth = useWindowWidth();
+  const isMd = windowWidth >= 768;
 
   return (
     <div className="relative w-full h-full flex flex-col md:flex-row bg-[#f8fafc] overflow-hidden font-sans">
@@ -58,11 +70,11 @@ export default function RoadmapSlide({ activeStep = 0 }) {
             key={index}
             layout
             transition={{ layout: { type: "spring", bounce: 0.15, duration: 0.8 } }}
-            className={`relative h-full overflow-hidden transition-colors duration-500 border-t md:border-t-0 md:border-l flex flex-col md:flex-row items-center md:items-start ${isActive ? 'flex-[4] md:flex-[5] bg-white' : 'flex-[1] bg-slate-50'}`}
+            className={`relative h-full overflow-hidden transition-colors duration-500 ${isMd ? 'border-l' : 'border-t'} flex flex-col md:flex-row items-center md:items-start ${isActive ? 'flex-[4] md:flex-[5] bg-white' : 'flex-[1] bg-slate-50'}`}
             style={{ 
               borderColor: isActive ? step.color : '#e2e8f0', 
-              borderLeftWidth: isActive && window.innerWidth >= 768 ? '4px' : '1px',
-              borderTopWidth: isActive && window.innerWidth < 768 ? '4px' : '1px'
+              borderLeftWidth: isActive && isMd ? '4px' : (isMd ? '1px' : '0px'),
+              borderTopWidth: isActive && !isMd ? '4px' : (!isMd ? '1px' : '0px')
             }}
           >
             {/* Inner fixed-width container so content doesn't squash, it just gets clipped by overflow */}
