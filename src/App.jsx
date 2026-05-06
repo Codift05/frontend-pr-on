@@ -4,32 +4,40 @@ import { AnimatePresence, motion } from 'framer-motion';
 import SplashSlide from './slides/SplashSlide';
 import CoverSlide from './slides/CoverSlide';
 import TeamSlide from './slides/TeamSlide';
-import VisiMisiSlide from './slides/VisiMisiSlide';
 import WhatIsFrontend from './slides/WhatIsFrontend';
 import WhyFrontend from './slides/WhyFrontend';
 import EcosystemSlide from './slides/EcosystemSlide';
 import ToolsSlide from './slides/ToolsSlide';
 import RoadmapSlide from './slides/RoadmapSlide';
 import WorkflowSlide from './slides/WorkflowSlide';
-import ResourcesSlide from './slides/ResourcesSlide';
-import QASlide from './slides/QASlide';
+import ThankYouSlide from './slides/ThankYouSlide';
 
 import NavigationArrows from './components/NavigationArrows';
-import CustomCursor from './components/CustomCursor';
+
+// Wrappers for RoadmapSlide to handle internal activeStep via global navigation
+const RoadmapStep1 = () => <RoadmapSlide activeStep={0} />;
+RoadmapStep1.slideId = 'roadmap';
+const RoadmapStep2 = () => <RoadmapSlide activeStep={1} />;
+RoadmapStep2.slideId = 'roadmap';
+const RoadmapStep3 = () => <RoadmapSlide activeStep={2} />;
+RoadmapStep3.slideId = 'roadmap';
+const RoadmapStep4 = () => <RoadmapSlide activeStep={3} />;
+RoadmapStep4.slideId = 'roadmap';
 
 const slides = [
   SplashSlide,      // 0. Intro / Splash
   CoverSlide,       // 1. Cover
   TeamSlide,        // 2. Get to Know Us
-  VisiMisiSlide,    // 3. Visi & Misi
-  WhatIsFrontend,   // 4. Apa itu Frontend?
-  WhyFrontend,      // 5. Kenapa Frontend?
-  EcosystemSlide,   // 6. Ecosystem & Stack
-  ToolsSlide,       // 7. Tools Kit
-  RoadmapSlide,     // 8. Roadmap Belajar
-  WorkflowSlide,    // 9. Workflow GitHub
-  ResourcesSlide,   // 10. Resources
-  QASlide,          // 11. Q&A
+  WhatIsFrontend,   // 3. Apa itu Frontend?
+  WhyFrontend,      // 4. Kenapa Frontend?
+  EcosystemSlide,   // 5. Ecosystem & Stack
+  ToolsSlide,       // 6. Tools Kit
+  RoadmapStep1,     // 7. Roadmap Belajar (Fase 1)
+  RoadmapStep2,     // 8. Roadmap Belajar (Fase 2)
+  RoadmapStep3,     // 9. Roadmap Belajar (Fase 3)
+  RoadmapStep4,     // 10. Roadmap Belajar (Fase 4)
+  WorkflowSlide,    // 11. Workflow GitHub
+  ThankYouSlide,    // 12. Thank You Slide (Replaces QA/Resources)
 ];
 
 const slideVariants = {
@@ -99,14 +107,14 @@ export default function App() {
   }, [goNext, goPrev]);
 
   const CurrentSlideComponent = slides[currentSlide];
+  const slideAnimationKey = CurrentSlideComponent.slideId || currentSlide;
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-noir-black cursor-none">
-      <CustomCursor />
+    <div className="relative w-screen h-screen overflow-hidden bg-noir-black">
       {/* Slide Content */}
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
-          key={currentSlide}
+          key={slideAnimationKey}
           custom={direction}
           variants={slideVariants}
           initial="enter"
